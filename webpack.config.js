@@ -7,14 +7,17 @@ module.exports = {
   mode: 'development',
   context: __dirname,
   devtool: 'source-map',
+  resolve: {
+    // What file extensions will webpack look
+    extensions: ['.jsx', '.js', '.json'],
+  },
   module: {
-    rules: [
+    loaders: [
       {
+        // Use babel for files that end in js or jsx.
         test: /jsx?$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-        },
+        exclude: /(node_modules)/,
+        loader: 'babel-loader',
       },
     ],
   },

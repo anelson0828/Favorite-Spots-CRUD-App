@@ -1,10 +1,10 @@
 import React from 'react';
 import axios from 'axios';
 
-//import components here
-// import Map from './Map';
 import Spots from './Spots';
 import AddSpot from './AddSpot';
+import Map from './Map';
+import Header from './Header';
 
 export default class Main extends React.Component {
   constructor() {
@@ -37,8 +37,14 @@ export default class Main extends React.Component {
   render() {
     return (
       <div>
-        <AddSpot />
-        <Spots spots={this.state.spots} />
+        <div>
+          <Header />
+          <AddSpot />
+        </div>
+        <div id="main">
+          <Spots spots={this.state.spots} clickSpot={this.clickSpot} />
+          <Map />
+        </div>
       </div>
     );
   }

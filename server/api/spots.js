@@ -11,11 +11,10 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.get('/:spotId', async (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
   try {
-    const spotId = req.params.spotId;
     const spot = await Spot.findOne({
-      where: [{ id: spotId }],
+      where: [{ id: req.params.id }],
       include: [{ all: true }],
     });
     res.send(spot);
@@ -24,14 +23,37 @@ router.get('/:spotId', async (req, res, next) => {
   }
 });
 
-router.get('/:spotId', async (req, res, next) => {
+router.post('/', async (req, res, next) => {
   try {
-    const spotId = req.params.spotId;
-    const spot = await Spot.findOne({
-      where: [{ id: spotId }],
-      include: [{ all: true }],
+    const spot = await Spot.create(req.body);
+    res.json(spot);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.put('/:id', async function(req, res, next) {
+  try {
+    const spot = await Spot.update(req.body, {
+      where: {
+        id: req.params.id,
+      },
+      returning: true,
     });
-    res.send(spot);
+    res.status(201).json(spot);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.delete('/:id', async function(req, res, next) {
+  try {
+    await Spot.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+    res.sendStatus(204);
   } catch (err) {
     next(err);
   }

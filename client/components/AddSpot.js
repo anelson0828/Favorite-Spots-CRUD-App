@@ -22,7 +22,7 @@ export default class AddSpot extends Component {
 
   render() {
     return (
-      <div className="add-spot">
+      <div id="add-spot">
         <input
           type="text"
           value={this.state.input}

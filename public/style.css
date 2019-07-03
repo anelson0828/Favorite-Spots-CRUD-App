@@ -29,14 +29,20 @@ body {
     rgba(18, 103, 233, 1) 55%,
     rgba(0, 230, 255, 1) 100%
   );
-  flex: 0 0 100%;
   color: whitesmoke;
   text-align: center;
   margin-bottom: 2rem;
+  padding: 1rem;
+  height: 3rem;
 }
 
 #map {
   box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
   background-color: whitesmoke;
   padding: 2rem;
+}
+
+#add-spot {
+  text-align: center;
+  margin: 2rem;
 }
