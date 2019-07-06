@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { Spot, Category, db } = require('../db/models');
 
+//GET all
 router.get('/', async (req, res, next) => {
   try {
     const spots = await Spot.findAll({ include: [{ model: Category }] });
@@ -11,6 +12,7 @@ router.get('/', async (req, res, next) => {
   }
 });
 
+//GET one
 router.get('/:id', async (req, res, next) => {
   try {
     const spot = await Spot.findOne({
@@ -23,8 +25,10 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
+//CREATE one
 router.post('/', async (req, res, next) => {
   try {
+    console.log('body', req.body);
     const spot = await Spot.create(req.body);
     res.json(spot);
   } catch (err) {
@@ -32,20 +36,19 @@ router.post('/', async (req, res, next) => {
   }
 });
 
+//UPDATE one
 router.put('/:id', async function(req, res, next) {
   try {
-    const spot = await Spot.update(req.body, {
-      where: {
-        id: req.params.id,
-      },
-      returning: true,
-    });
-    res.status(201).json(spot);
+    const spot = await Spot.findByPk(+req.params.id);
+    if (!spot) return res.sendStatus(404);
+    await spot.update({ completed: !spot.completed });
+    res.sendStatus(204).json(spot);
   } catch (err) {
     next(err);
   }
 });
 
+//DELETE one
 router.delete('/:id', async function(req, res, next) {
   try {
     await Spot.destroy({

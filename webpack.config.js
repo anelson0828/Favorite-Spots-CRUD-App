@@ -4,15 +4,14 @@ module.exports = {
     path: __dirname,
     filename: './public/bundle.js',
   },
-  mode: 'development',
-  context: __dirname,
   devtool: 'source-map',
   resolve: {
     // What file extensions will webpack look
     extensions: ['.jsx', '.js', '.json'],
   },
+  mode: 'development',
   module: {
-    loaders: [
+    rules: [
       {
         // Use babel for files that end in js or jsx.
         test: /jsx?$/,

@@ -21,6 +21,10 @@ const Spot = db.define('spot', {
   recommendedBy: {
     type: Sequelize.STRING,
   },
+  completed: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false,
+  },
 });
 
 module.exports = Spot;

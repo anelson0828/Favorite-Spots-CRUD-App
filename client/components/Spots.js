@@ -1,24 +1,35 @@
 import React from 'react';
+import AddSpot from './AddSpot';
 
 export default function Spots(props) {
   return (
     <div className="container">
       <div id="items">
         <h3>Spots</h3>
-        <ul>
-          {props.spots.map(spot => {
-            return (
-              <li
-                key={spot.id}
+
+        {props.spots.map(spot => {
+          return (
+            <div
+              key={spot.id}
+              // onClick={() => {
+              //   props.getSpot(spot.id);
+              // }}
+            >
+              <input
+                type="checkbox"
+                id={spot.id}
+                name="spot"
                 onClick={() => {
-                  props.clickSpot(spot.id);
+                  props.completeSpot(spot);
                 }}
-              >
-                {spot.name} - {spot.category.name}
-              </li>
-            );
-          })}
-        </ul>
+              />
+              <label>{spot.name}</label>
+              {/* - {(spot.category.name = null)} */}
+            </div>
+          );
+        })}
+
+        <AddSpot spots={props.spots} addSpot={props.addSpot} />
       </div>
     </div>
   );

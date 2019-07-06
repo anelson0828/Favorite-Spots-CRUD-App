@@ -1,4 +1,4 @@
-const PORT = 8080;
+const PORT = 9090;
 const server = require('./index');
 const db = require('./db/db');
 

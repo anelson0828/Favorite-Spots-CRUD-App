@@ -11,7 +11,7 @@ export default class AddSpot extends Component {
 
   handleKey(evt) {
     if (evt.key === 'Enter') {
-      this.props.add(this.state.input);
+      this.props.addSpot(this.state.input);
       this.setState({ input: '' });
     }
   }
@@ -31,7 +31,7 @@ export default class AddSpot extends Component {
         />
         <button
           onClick={() => {
-            this.addSpot(this.state.input);
+            this.props.addSpot(this.state.input);
             this.setState({ input: '' });
           }}
         >
